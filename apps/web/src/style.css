@@ -1,0 +1,36 @@
+@import "tailwindcss";
+@layer base {
+  body {
+    @apply m-0 bg-slate-50 font-sans text-slate-900 antialiased;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply text-balance;
+  }
+  p {
+    @apply text-pretty;
+  }
+  th,
+  td {
+    @apply border-b border-slate-200 px-3 py-3 text-right;
+  }
+  th:first-child,
+  td:first-child {
+    @apply text-left;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-4 outline-teal-700;
+  }
+  summary {
+    @apply py-1;
+  }
+  button,
+  select,
+  summary {
+    @apply cursor-pointer;
+  }
+}
+.skip {
+  @apply absolute left-4 top-2 z-50 -translate-y-24 rounded bg-white p-3 focus:translate-y-0;
+}
