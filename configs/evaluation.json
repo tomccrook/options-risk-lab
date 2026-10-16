@@ -1,0 +1,22 @@
+{
+  "protocol": "locked-v1",
+  "development_seeds": [11, 29],
+  "validation_seeds": [43, 61],
+  "locked_seeds": [1009, 2027, 3041],
+  "pilot_paths": 128,
+  "paths_per_batch": 1024,
+  "tail_level": 0.95,
+  "bootstrap_seed": 919,
+  "bootstrap_samples": 2000,
+  "policies": ["none", "daily", "weekly", "monthly", "band"],
+  "band_shares": 10,
+  "cost_per_share": [0, 0.01, 0.05],
+  "regimes": ["matched", "misspecified", "jump-delay"],
+  "ml_seeds": [17, 31, 47],
+  "ml_labels": 2048,
+  "ml_epochs": 300,
+  "ml_width": 48,
+  "ml_depth": 3,
+  "ml_acceptance": {"price_rmse": 0.15, "delta_rmse": 0.03, "gamma_rmse": 0.005, "vega_rmse": 2.0},
+  "note": "Freeze before final evaluation; thresholds are project choices. New tuning requires new protocol, never editing this run."
+}
