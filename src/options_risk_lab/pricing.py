@@ -72,11 +72,22 @@ def price(option: Option, market: Market) -> Greeks:
     )
 
 
-def vector_price(x: np.ndarray, kind: str = "put") -> np.ndarray:
-    """Vectorized analytical ML control: columns m, tau, sigma, r, q; returns P/K."""
-    m, t, v, r, q = x.T
+def _validate_vector_inputs(x: np.ndarray) -> None:
+    if x.ndim != 2 or x.shape[1] != 5:
+        raise ValueError("vector control requires a matrix with five columns: m, tau, sigma, r, q")
+    if not np.isfinite(x).all():
+        raise ValueError("vector control requires finite inputs")
+    m, t, v = x[:, :3].T
     if np.any(m <= 0) or np.any(t <= 0) or np.any(v <= 0):
         raise ValueError("vector control requires positive m, tau and sigma")
+
+
+def vector_price(x: np.ndarray, kind: str = "put") -> np.ndarray:
+    """Vectorized analytical ML control: columns m, tau, sigma, r, q; returns P/K."""
+    if kind not in ("call", "put"):
+        raise ValueError("unsupported option kind")
+    _validate_vector_inputs(x)
+    m, t, v, r, q = x.T
     d1 = (np.log(m) + (r - q + v * v / 2) * t) / (v * np.sqrt(t))
     d2 = d1 - v * np.sqrt(t)
     sign = 1 if kind == "call" else -1
@@ -111,6 +122,7 @@ def batch_price_delta(
 
 def vector_price_greeks(x: np.ndarray) -> np.ndarray:
     """European put batch control: USD price/delta/gamma/decimal vega at K=100."""
+    _validate_vector_inputs(x)
     m, t, v, r, q = x.T
     d1 = (np.log(m) + (r - q + v * v / 2) * t) / (v * np.sqrt(t))
     phi = np.exp(-d1 * d1 / 2) / np.sqrt(2 * np.pi)

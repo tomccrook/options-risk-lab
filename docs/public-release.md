@@ -32,3 +32,9 @@ The local frontend production build passed with Node 24.21.0. The GitHub Actions
 | 2026-09-12 | Document findings and runnable reproduction |
 
 The source import is consolidated into ten substantive file groups. Subsequent maintenance changes use their actual dates.
+
+## Maintenance fixes — 16 October 2026
+
+Vector pricing no longer silently treats unknown option kinds as puts. Price and Greek batch controls reject malformed or nonfinite rows before numerical operations. Regression checks also compare valid vector results against the scalar implementation. All 85 tests passed; Ruff and mypy passed.
+
+These targeted fixes do not rerun the protected scientific studies or update their recorded numerical findings.
