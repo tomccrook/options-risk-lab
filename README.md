@@ -1,5 +1,7 @@
 # Options Risk Lab
 
+[![Tests](https://github.com/tomccrook/options-risk-lab/actions/workflows/tests.yml/badge.svg)](https://github.com/tomccrook/options-risk-lab/actions/workflows/tests.yml)
+
 **A portfolio can have almost zero delta and still lose money.** This project follows that gap from option prices and Greeks through finite market moves, feasible hedge trades and a cash account.
 
 [Interactive demo](https://tomcrook.dev/demos/options-risk) · [Project study](https://tomcrook.dev/projects/options-risk) · [Model-risk report](docs/model-risk-report.md)
